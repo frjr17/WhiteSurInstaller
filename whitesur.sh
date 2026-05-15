@@ -31,15 +31,13 @@ rm -rf WhiteSur-icon-theme
 
 # Setting Theme ------------------------------------------
 
-git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+git clone https://github.com/frjr17/WhiteSurInstaller.git
 
 cd WhiteSur-gtk-theme
 
 ./install.sh -l -c light -m  -HD --round -N stable
 
 sudo ./tweaks.sh -g -p 60
-
-sudo ./tweaks.sh -f monterey
 
 cd ..
 
