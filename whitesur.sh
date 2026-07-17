@@ -35,7 +35,7 @@ git clone https://github.com/frjr17/WhiteSurGtkTheme.git
 
 cd WhiteSurGtkTheme 
 
-./install.sh -l -c light -m  -HD --round -N stable
+./install.sh -c dark -o solid --darker -l
 
 sudo ./tweaks.sh -g -p 60
 
