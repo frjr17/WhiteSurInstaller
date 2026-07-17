@@ -7,7 +7,7 @@ pm=$1
 
 # Setting Cursor -----------------------------------------
 
-git clone git@github.com:frjr17/WhiteSurCursors.git
+git clone https://github.com/frjr17/WhiteSurCursors.git
 
 cd WhiteSurCursors
 
@@ -19,7 +19,7 @@ rm -rf WhiteSurCursors
 
 # Setting Icon -------------------------------------------
 
-git clone https://github.com/vinceliuice/WhiteSurIconTheme.git
+git clone https://github.com/frjr17/WhiteSurIconTheme.git
 
 cd WhiteSurIconTheme
 
