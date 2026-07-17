@@ -7,7 +7,7 @@ pm=$1
 
 # Setting Cursor -----------------------------------------
 
-git clone https://github.com/vinceliuice/WhiteSurCursors.git
+git clone git@github.com:frjr17/WhiteSurCursors.git
 
 cd WhiteSurCursors
 
