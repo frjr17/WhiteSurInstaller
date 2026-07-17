@@ -7,33 +7,33 @@ pm=$1
 
 # Setting Cursor -----------------------------------------
 
-git clone https://github.com/vinceliuice/WhiteSur-cursors.git
+git clone https://github.com/vinceliuice/WhiteSurCursors.git
 
-cd WhiteSur-cursors
+cd WhiteSurCursors
 
 ./install.sh
 
 cd ..
 
-rm -rf WhiteSur-cursors
+rm -rf WhiteSurCursors
 
 # Setting Icon -------------------------------------------
 
-git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+git clone https://github.com/vinceliuice/WhiteSurIconTheme.git
 
-cd WhiteSur-icon-theme
+cd WhiteSurIconTheme
 
 ./install.sh
 
 cd ..
 
-rm -rf WhiteSur-icon-theme
+rm -rf WhiteSurIconTheme
 
 # Setting Theme ------------------------------------------
 
-git clone https://github.com/frjr17/WhiteSurInstaller.git
+git clone https://github.com/frjr17/WhiteSurGtkTheme.git
 
-cd WhiteSur-gtk-theme
+cd WhiteSurGtkTheme 
 
 ./install.sh -l -c light -m  -HD --round -N stable
 
@@ -41,7 +41,7 @@ sudo ./tweaks.sh -g -p 60
 
 cd ..
 
-rm -rf WhiteSur-gtk-theme
+rm -rf WhiteSurGtkTheme
 
 mkdir -p ~/.themes
 
@@ -53,9 +53,9 @@ done
 
 screen_resolution=$(./screen-res.sh)
 
-git clone https://github.com/vinceliuice/WhiteSur-wallpapers.git
+git clone https://github.com/frjr17/WhiteSurWallpapers.git
 
-cd WhiteSur-wallpapers
+cd WhiteSurWallpapers
 
 mkdir -p ~/.local/share/gnome-background-properties
 
@@ -65,5 +65,5 @@ echo "Your Screen Resolution is $screen_resolution"
 
 cd ..
 
-rm -rf WhiteSur-wallpapers
+rm -rf WhiteSurWallpapers
 
