@@ -91,17 +91,8 @@ sudo flatpak install -y flathub com.mattjakeman.ExtensionManager
 ./whitesur.sh $pm
 
 
-# Installing Extensions ----------------------------------------
-
-./ext-installer.sh $pm $ID
-
 sudo flatpak override --filesystem=xdg-config/gtk-3.0 && sudo flatpak override --filesystem=xdg-config/gtk-4.0
 
 gsettings set org.gnome.desktop.interface cursor-theme WhiteSur-cursors
 gsettings set org.gnome.desktop.interface icon-theme WhiteSur-light
 gsettings set org.gnome.desktop.interface gtk-theme WhiteSur-Light-solid
-
-gsettings set org.gnome.desktop.background picture-uri file:///home/$USER/.local/share/backgrounds/WhiteSur/WhiteSur-timed.xml
-gsettings set org.gnome.desktop.background picture-uri-dark file:///home/$USER/.local/share/backgrounds/WhiteSur/WhiteSur-timed.xml
-
-
