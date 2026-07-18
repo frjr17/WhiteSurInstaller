@@ -1,0 +1,20 @@
+name: Shell
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container: fedora:44
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: dnf install -y ShellCheck
+      - name: Check shell scripts
+        run: |
+          bash -n install.sh whitesur.sh screen-res.sh tests/smoke.sh
+          shellcheck install.sh whitesur.sh screen-res.sh tests/smoke.sh
+      - name: Smoke test
+        run: tests/smoke.sh

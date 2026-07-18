@@ -1,69 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-scrDir="$(dirname "$(realpath "$0")")"
-pm=$1
+REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+readonly REPO_DIR
+WORK_DIR="$(mktemp -d)"
+trap 'rm -rf -- "${WORK_DIR}"' EXIT
 
-# Setting Cursor -----------------------------------------
+git clone --depth=1 https://github.com/frjr17/WhiteSurCursors.git "${WORK_DIR}/WhiteSurCursors"
+(cd "${WORK_DIR}/WhiteSurCursors" && ./install.sh)
 
-git clone https://github.com/frjr17/WhiteSurCursors.git
+git clone --depth=1 https://github.com/frjr17/WhiteSurIconTheme.git "${WORK_DIR}/WhiteSurIconTheme"
+(cd "${WORK_DIR}/WhiteSurIconTheme" && ./install.sh)
 
-cd WhiteSurCursors
+git clone --depth=1 https://github.com/frjr17/WhiteSurGtkTheme.git "${WORK_DIR}/WhiteSurGtkTheme"
+(
+  cd "${WORK_DIR}/WhiteSurGtkTheme"
+  ./install.sh -c light -c dark -o solid --darker -l
+  sudo ./tweaks.sh -g -p 60
+)
 
-./install.sh
+screen_resolution="$("${REPO_DIR}/screen-res.sh")"
+echo "Your screen resolution variant is ${screen_resolution}"
 
-cd ..
-
-rm -rf WhiteSurCursors
-
-# Setting Icon -------------------------------------------
-
-git clone https://github.com/frjr17/WhiteSurIconTheme.git
-
-cd WhiteSurIconTheme
-
-./install.sh
-
-cd ..
-
-rm -rf WhiteSurIconTheme
-
-# Setting Theme ------------------------------------------
-
-git clone https://github.com/frjr17/WhiteSurGtkTheme.git
-
-cd WhiteSurGtkTheme 
-
-./install.sh -c dark -o solid --darker -l
-
-sudo ./tweaks.sh -g -p 60
-
-cd ..
-
-rm -rf WhiteSurGtkTheme
-
-mkdir -p ~/.themes
-
-for i in "$scrDir"/theme/*;do
-	tar -xf $i -C ~/.themes
-done
-
-# Setting walls
-
-screen_resolution=$(./screen-res.sh)
-
-git clone https://github.com/frjr17/WhiteSurWallpapers.git
-
-cd WhiteSurWallpapers
-
-mkdir -p ~/.local/share/gnome-background-properties
-
-echo "Your Screen Resolution is $screen_resolution"
-
-./install-gnome-backgrounds.sh -t whitesur -s "${screen_resolution}"
-
-cd ..
-
-rm -rf WhiteSurWallpapers
-
+git clone --depth=1 https://github.com/frjr17/WhiteSurWallpapers.git "${WORK_DIR}/WhiteSurWallpapers"
+(
+  cd "${WORK_DIR}/WhiteSurWallpapers"
+  ./install-gnome-backgrounds.sh -t whitesur -s "${screen_resolution}"
+)

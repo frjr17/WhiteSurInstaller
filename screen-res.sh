@@ -1,29 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
-# Get resolution from fbset
-if command -v fbset &> /dev/null; then
-	screen=$(sudo fbset | awk '/geometry/ {print $2 "x" $3}')
-else
-	screen=$(xrandr | grep " connected primary" | awk '{print $4}' | cut -d+ -f1)
+screen=""
+if command -v xrandr >/dev/null 2>&1; then
+  if ! screen="$(xrandr --current 2>/dev/null | awk '
+    / connected primary / { print $4; found = 1; exit }
+    / connected / && !fallback { fallback = $3 }
+    END { if (!found && fallback) print fallback }
+  ')"; then
+    screen=""
+  fi
 fi
 
-case "$screen" in
-    "1920x1080")
-        #echo "Your Screen is Full HD."
-	echo "1080p"
-        ;;
-    "3840x2160")
-        #echo "Your Screen is 4K."
-	echo "4k"
-        ;;
-    "2560x1440")
-        #echo "Your Screen is 2K."
-	echo "2k"
-        ;;
-    *)
-        #echo "Can't determine your screen resolution, setting walls to 4K."
-	echo "4k"
-        ;;
-esac
+height="${screen#*x}"
+height="${height%%+*}"
+
+if [[ ${height} =~ ^[0-9]+$ ]] && ((height >= 2160)); then
+  echo "4k"
+elif [[ ${height} =~ ^[0-9]+$ ]] && ((height >= 1440)); then
+  echo "2k"
+else
+  echo "1080p"
+fi
