@@ -38,7 +38,6 @@ cd WhiteSurGtkTheme
 ./install.sh -c dark -o solid --darker -l
 
 sudo ./tweaks.sh -g -p 60
-./install.sh -c dark -o solid --darker -l
 
 cd ..
 
