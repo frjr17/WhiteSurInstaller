@@ -18,6 +18,7 @@ git clone --depth=1 https://github.com/frjr17/WhiteSurGtkTheme.git "${WORK_DIR}/
   cd "${WORK_DIR}/WhiteSurGtkTheme"
   ./install.sh -c light -c dark -o solid --darker -l
   sudo ./tweaks.sh -g -p 60
+  ./install-oled.sh
 )
 
 screen_resolution="$("${REPO_DIR}/screen-res.sh")"
